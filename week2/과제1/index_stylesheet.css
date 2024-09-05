@@ -1,0 +1,81 @@
+body{
+    font-family: "Lucida Sans", Verdana;
+}
+#top_header{
+    color: white;
+    background-color: #04AA6D;
+    padding: 15px;
+    margin: 25px 20px 0px 15px ;
+    border-radius: 4px;
+}
+#top_header h1{
+    line-height: 30px;
+    margin: 0;
+    font-weight: 900;
+}
+#top_header p{
+    margin: 0;
+    width: 700px;
+}
+#menu_bar{
+    padding: 0px;
+    margin: 0px;
+    width: 200px;
+}
+.menu_item{
+    background-color: #f1f1f1;
+    border: 1px solid #b2b2b2;
+    border-radius: 4px;
+    margin: 4px 0px 0px 0px;
+    padding: 5px;
+    width: 179px;
+    font-weight: 500;
+    list-style-type: none;
+}
+.wrapper{
+    position: relative;
+    overflow: auto;
+    display: flex;
+    margin: 5px 0px 0px 15px;
+}
+#menu_list{
+    margin: 0px;
+    padding: 0px;
+}
+#center_content{
+    width: 910px;
+
+}
+#content_area1{
+    margin: 17px;
+}
+#content_area1 h1{
+    font-weight: 900;
+}
+#content_area1 p{
+    line-height: 25px;
+    
+}
+#side_bar{
+    background-color: rgb(50, 162, 230);
+    border-radius: 4px;
+    margin: 3px;
+}
+#side_bar_title{
+    margin: 30px 100px 10px 10px;
+    color: white;
+    font-size: larger;
+    font-weight: 600;
+    
+}
+#side_bar_content{
+    width: 180px;
+    color: white;
+    margin: 10px;
+    margin-top: 20px;
+    margin-bottom: 90px;
+    line-height: 26px;
+}
+#links_content{
+    margin: 0px;
+}
