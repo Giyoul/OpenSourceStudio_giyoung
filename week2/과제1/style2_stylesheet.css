@@ -1,27 +1,32 @@
 body{
 	font-family: "Courier New";
 	background-color: black;
+	margin: 20px;
+	line-height: 26px;
 }
 #top_header{
 	color: rgb(132, 198, 85);
-	margin: 27px;
-	margin-top: 48px;
+	padding: 15px;
+
+}
+.wrapper{
+	position: relative;
+	overflow: auto;
 }
 #top_header h1{
-	line-height: 0px;
+	/*line-height: 0px;*/
+	margin: 0px;
 }
 #top_header p{
-	line-height: 9px;
+	/*line-height: 9px;*/
+	/*padding: 15px;*/
+	margin: 0px;
 }
 #menu_list{
 	color: rgb(132, 198, 85);
-	margin: 12px;
-	margin-top: 40px;
-	width: 500px;
+	margin-bottom: 47px;
 }
-#menu_list li{
-	line-height: 26px;
-}
+
 #menu_list a{
 	text-decoration: none;
 	color: rgb(132, 198, 85);
@@ -40,12 +45,10 @@ body{
 }
 #content_area1 {
 	color : rgb(132, 198, 85);
-	/*margin-top: 42px;*/
-	margin-left: 22px;
-	width: 100%;
+	margin: 10px;
 }
 #content_area1_content {
-	margin-top: 0px;
+	margin-top: 22px;
 	line-height: 26px;
 }
 #content_area1_content a{
@@ -54,26 +57,38 @@ body{
 #content_area1_content a:hover{
 	color : rgb(132, 198, 85);
 }
-.footer{
+.footer {
 	border: white solid 1px;
+	margin-top: 26px;
+	border-radius: 4px;
 }
 #footer_content{
 	color: white;
+
+	font-size: 11.2px;
+	text-align: center;
+	line-height: 14px;
 }
 #side_bar {
 	border: white solid 1px;
-	width: 360px;
-	height: 180px;
+	width: 320px;
+	top: 0;
+	right: 0;
 	border-radius: 4px;
-	margin-left: 70%;
 	color: white;
 	position: absolute;
-	font-size: small;
+	font-size: 80%;
+	line-height: 20px;
+	padding: 10px;
 }
 #side_bar_title h3 {
 	font-weight: bold;
 }
 
-#center_content{
-	margin-right: 340px;
+@media (max-width: 600px) {
+	#side_bar{
+		width: auto;
+		margin-bottom: 10px;
+		position: relative;
+	}
 }
