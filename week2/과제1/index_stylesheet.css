@@ -17,6 +17,10 @@ body{
     margin: 0;
     width: 700px;
 }
+#content_area1_title{
+    margin-top: 25px;
+    margin-bottom: 16px;
+}
 #menu_bar{
     padding: 0px;
     margin: 0px;
@@ -54,6 +58,8 @@ body{
 }
 #content_area1 p{
     line-height: 25px;
+    margin-top: 0px;
+    margin-bottom: 5px;
     
 }
 #side_bar{
@@ -78,4 +84,18 @@ body{
 }
 #links_content{
     margin: 0px;
+}
+.footer{
+    border: #d3d3d3 solid 1px;
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    margin: 17px;
+    margin-top: 5px;
+}
+#footer_content{
+    text-align: center;
+    font-size: 11.2px;
+    font-weight: 500;
+    margin-left: 15px;
+    margin-right: 15px;
 }
