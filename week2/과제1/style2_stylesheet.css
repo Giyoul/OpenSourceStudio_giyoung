@@ -1,0 +1,79 @@
+body{
+	font-family: "Courier New";
+	background-color: black;
+}
+#top_header{
+	color: rgb(132, 198, 85);
+	margin: 27px;
+	margin-top: 48px;
+}
+#top_header h1{
+	line-height: 0px;
+}
+#top_header p{
+	line-height: 9px;
+}
+#menu_list{
+	color: rgb(132, 198, 85);
+	margin: 12px;
+	margin-top: 40px;
+	width: 500px;
+}
+#menu_list li{
+	line-height: 26px;
+}
+#menu_list a{
+	text-decoration: none;
+	color: rgb(132, 198, 85);
+}
+#menu_list a:hover{
+	color : white;
+}
+.menu_item_current {
+	color: white;
+	font-weight: bold;
+}
+#content_area1_title{
+	color : rgb(132, 198, 85);
+	margin-top: 42px;
+	margin-bottom: 16px;
+}
+#content_area1 {
+	color : rgb(132, 198, 85);
+	/*margin-top: 42px;*/
+	margin-left: 22px;
+	width: 100%;
+}
+#content_area1_content {
+	margin-top: 0px;
+	line-height: 26px;
+}
+#content_area1_content a{
+	color: white;
+}
+#content_area1_content a:hover{
+	color : rgb(132, 198, 85);
+}
+.footer{
+	border: white solid 1px;
+}
+#footer_content{
+	color: white;
+}
+#side_bar {
+	border: white solid 1px;
+	width: 360px;
+	height: 180px;
+	border-radius: 4px;
+	margin-left: 70%;
+	color: white;
+	position: absolute;
+	font-size: small;
+}
+#side_bar_title h3 {
+	font-weight: bold;
+}
+
+#center_content{
+	margin-right: 340px;
+}
