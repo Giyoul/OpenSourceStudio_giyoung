@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="body_container">
+        <div id="header">
+            <img src="https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo.svg" width="72" height="57">
+            <h2>Checkout form</h2>
+            <p>Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        </div>
+        <div id="main_content">
+            <div id="billing">
+                <h3>Billing address</h3>
+                <div id="first_name">
+                    <p>First name</p>
+                    <input type="text" id="first_name_input" placeholder required>
+                </div>
+                <div id="Last_name">
+                    <p>Last name</p>
+                    <input type="text" id="last_name_input" placeholder required>
+                </div>
+                <div id="user_name">
+                    <p>Username</p>
+                    <span>@</span>
+                    <input type="text" id="user_name_input" placeholder="Username" required>
+                </div>
+                <div id="email">
+                    Email
+                    <span>(Optional)</span>
+                    <input type="email" id="email_input" placeholder="you@example.com">
+                </div>
+                <div id="address">
+                    <p>Address</p>
+                    <input type="text" id="address_input" placeholder="1234 Main St" required>
+                </div>
+                <div id="address2">
+                    Address 2
+                    <span>(Optional)</span>
+                    <input type="text" id="address_input2" placeholder="Apartment or suite">
+                </div>
+                <div id="country">
+                    <p>Country</p>
+                    <select id="country_input" required>
+                        <option value>Choose...</option>
+                        <option>United States</option>
+                    </select>
+                </div>
+                <div id="state">
+                    <p>Country</p>
+                    <select id="state_input" required>
+                        <option value>Choose...</option>
+                        <option>California</option>
+                    </select>
+                </div>
+                <div id="zip">
+                    <p>Zip</p>
+                    <input type="text" id="zip_input" required>
+                </div>
+                <hr>
+                <div id="check_form">
+                    <input type="checkbox" id="same_address_check">
+                    <label for="same_address_check">Shipping address is the same as my billing address</label>
+                    <br>
+                    <input type="checkbox" id="same_address_check2">
+                    <label for="same_address_check2">Save this information for next time
+                    </label>
+                </div>
+                <hr>
+            </div>
+            <div id="payment">
+                <h3>Payment</h3>
+                <div id="payment_type_check">
+                    <input type="radio" id="payment_type_select1" name="payment_type" checked required>
+                    <label for="payment_type_select1">Credit card</label>
+                    <br>
+                    <input type="radio" id="payment_type_select2" name="payment_type" required>
+                    <label for="payment_type_select2">Devit card</label>
+                    <br>
+                    <input type="radio" id="payment_type_select3" name="payment_type" required>
+                    <label for="payment_type_select3">PayPal</label>
+                    <br>
+                </div>
+                <div id="name_on_card">
+                    <p>Name on card</p>
+                    <input type="text" id="name_on_card_input" required>
+                    <p id="name_on_card_comment">Full name as displayed on card</p>
+                </div>
+                <div id="credit_card_number">
+                    <p>Credit card number</p>
+                    <input type="text" id="credit_card_number_input" required>
+                </div>
+                <div id="expiration">
+                    <p>Expiration</p>
+                    <input type="text" id="expiration_input" required>
+                </div>
+                <div id="cvv">
+                    <p>CVV</p>
+                    <input type="text" id="cvv_input" required>
+                </div>
+            </div>
+            <hr>
+            <button type="submit" id="checkout_button">Continue to checkout</button>
+        </div>
+        <div id="side_bar">
+            <h2>Your cart</h2>
+            <span>3</span>
+            <ul id="cart_list">
+                <li>
+                    <div>
+                        <h4>Product name</h4>
+                        <p>Brief description</p>
+                    </div>
+                    <span>$12</span>
+                </li>
+                <li>
+                    <div>
+                        <h4>Second product</h4>
+                        <p>Brief description</p>
+                    </div>
+                    <span>$8</span>
+                </li>
+                <li>
+                    <div>
+                        <h4>Third item</h4>
+                        <p>Brief description</p>
+                    </div>
+                    <span>$5</span>
+                </li>
+                <li>
+                    <div>
+                        <h4>Promotion code</h4>
+                        <p>EXAMPLECODE</p>
+                    </div>
+                    <span>-$5</span>
+                </li>
+                <li>
+                    <div>
+                        <h4>Total (USD)</h4>
+                    </div>
+                    <span>$20</span>
+                </li>
+            </ul>
+            <div id="promotion_code">
+                <textarea id="promotion_code_input" placeholder="Promo code"></textarea>
+                <button type="submit" id="promotion_code_submit">Redeem</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
