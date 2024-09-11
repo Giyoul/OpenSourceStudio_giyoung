@@ -1,0 +1,359 @@
+body{
+	line-height: 24px;
+	font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	background-color: rgb(248, 249, 250);
+	max-width: 940px;
+	margin: 0 auto;
+	padding: 0 16px;
+}
+#body_container{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+#header{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding-bottom: 28px;
+	padding-top: 48px;
+}
+#header h2{
+	font-size: 33px;
+	font-weight: 500;
+	margin-bottom: 18px;
+}
+#header p{
+	margin-top: 0px;
+	font-size: 20px;
+	font-weight: 300;
+	line-height: 28px;
+}
+
+#main_content{
+	float: none;
+	width: 65%;
+}
+#side_bar{
+	float: none;
+	width: 30%;
+	marggin-left: 5%;
+}
+
+#billing{
+	margin-top: 0px;
+}
+#billing h3{
+	font-size: 24px;
+	font-weight: 500;
+	margin-bottom: 18px;
+}
+.input_box_style{
+	display: block;
+	width: 100%;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	background-color: white;
+	background-clip: padding-box;
+	/*appearance: none;*/
+	border-radius: 0.375rem;
+	color: #212529;
+	margin-top: 9px;
+	border: 1px solid #ced4da;
+	padding: 8px 12px;
+	box-sizing: border-box;
+
+}
+
+input[type="text" i]{
+	padding-block: 6px;
+
+}
+
+.container{
+	display: flex;
+	gap: 17px;
+}
+
+.container > div{
+	flex: 1;
+	min-width: 200px;
+}
+
+#email span{
+	color: #6c757d;
+}
+
+#address2 span{
+	color: #6c757d;
+}
+
+.container_name{
+	margin-bottom: 0px;
+}
+
+.input_group {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.input_2 {
+	display: flex;
+	align-items: center;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #212529;
+	border: 1px solid #ced4da;
+	padding: 6px 12px; /* 위아래 padding을 input과 동일하게 설정 */
+	border-radius: 0.375rem;
+	background-color: #e9ecef;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	height: 100%;
+	white-space: nowrap;
+	box-sizing: border-box;
+}
+
+#user_name_input {
+	position: relative;
+	flex: 1 1 auto;
+	width: 1%;
+	min-width: 0;
+	border: 1px solid #ced4da;
+	border-left: 0; /* 왼쪽 경계선을 제거하여 일관성 유지 */
+	border-radius: 0 0.375rem 0.375rem 0; /* 오른쪽 모서리만 둥글게 */
+	box-sizing: border-box;
+	line-height: 1.5;
+}
+
+#country{
+	display: block;
+	width: 240px;
+	flex-basis: auto;
+}
+#state{
+	display: block;
+	width: 190px;
+	flex-basis: auto;
+}
+#zip{
+	display: block;
+	width: 148px;
+	flex-basis: auto;
+}
+#contain{
+	display: flex;
+	gap: 16px;
+	flex-wrap: wrap;
+}
+
+hr{
+	margin-top: 23px;
+	margin-bottom: 23px;
+	border: 0;
+	border-top: 1px solid rgb(210, 210, 210);
+}
+
+#payment h2{
+	font-size: 23px;
+	font-weight: 500;
+}
+
+#contain2{
+	display: flex;
+	gap: 25px;
+	flex-wrap: wrap;
+}
+#name_on_card{
+	display: block;
+	width: 294px;
+}
+#credit_card_number{
+	display: block;
+	width: 290px;
+}
+#name_on_card_comment{
+	font-size: 14px;
+	color: #6c757d;
+}
+
+#contain3{
+	display: flex;
+	gap: 25px;
+	flex-wrap: wrap;
+}
+#expiration_input{
+	font-size: 12px;
+}
+#expiration{
+	display: block;
+	width: 137px;;
+}
+#cvv{
+	display: block;
+	width: 137px;
+}
+
+.button{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+#checkout_button{
+	background-color: rgb(13, 110, 253);
+	color: white;
+	border-radius: 8px;
+	font-size: 20px;
+	font-weight: 400;
+	padding: 12px;
+	width: 100%;
+	border: none;
+}
+#your_cart{
+	color: rgb(13, 110, 253);
+	font-weight: 500;
+	font-size: 24px;
+}
+#count{
+	float: right;
+	background-color: rgb(13, 110, 253);
+	padding: 3px 11px;
+	border-radius: 800px;
+	font-size: 18px;
+	font-weight: 700;
+	color: white;
+}
+@media (max-width: 768px) {
+	#main_content{
+		width: 100%;
+	}
+	#side_bar{
+		width: 100%;
+	}
+}
+
+#cart_list {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	background-color: white;
+}
+
+#cart_list li {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+}
+
+#cart_list li:last-child {
+	border-bottom: none;
+}
+.item-description h4 {
+	line-height: 16px;
+	font-size: 16px;
+	margin: 0;
+	margin-left: 6px;
+	font-weight: 500;
+}
+
+.item-description p {
+	font-size: 14px;
+	margin: 0;
+	margin-left: 6px;
+	color: #6c757d;
+}
+.item-description h3{
+	line-height: 16px;
+	font-size: 16px;
+	margin: 1px;
+	margin-left: 6px;
+	font-weight: 400;
+}
+.item-description-this{
+	color: green;
+}
+.item-description-this h4 {
+	line-height: 16px;
+	font-size: 16px;
+	margin: 0;
+	margin-left: 6px;
+	font-weight: 500;
+}
+.item-price-this{
+	line-height: 16px;
+	margin-right: 5px;
+	font-size: 16px;
+	font-weight: 400;
+	color: green;
+}
+.item-description-this p {
+	font-size: 14px;
+	margin: 0;
+	margin-left: 6px;
+}
+
+.item-price {
+	line-height: 16px;
+	margin-right: 5px;
+	font-size: 16px;
+	font-weight: 400;
+	color: #888888;
+}
+.promo-code{
+	background-color: rgb(248, 249, 250);
+}
+
+.promo-code .item-price {
+	color: green;
+	font-weight: 700;
+}
+
+.total .item-price {
+	font-weight: 700;
+	font-size: 18px;
+}
+
+#promotion_code {
+	display: flex;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+#promotion_code_input {
+	width: 70%;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+#promotion_code_submit {
+	padding: 10px 20px;
+	background-color: #6c757d;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#promotion_code_submit:hover {
+	background-color: #5a6268;
+}
+
+#divine{
+	margin-bottom: 17px;
+}
