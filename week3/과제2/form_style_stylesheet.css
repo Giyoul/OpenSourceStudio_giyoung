@@ -218,6 +218,7 @@ hr{
 	padding: 12px;
 	width: 100%;
 	border: none;
+	transition: background-color 0.5s ease, color 0.5s ease;
 }
 #your_cart{
 	color: rgb(13, 110, 253);
@@ -377,3 +378,19 @@ hr{
 #divine{
 	margin-bottom: 17px;
 }
+
+.error-message {
+	color: red; /* 에러 메시지의 폰트 색상을 빨간색으로 설정 */
+	font-size: 14px; /* 폰트 크기 조정 (필요에 따라 수정) */
+	margin-top: 5px; /* 에러 메시지와 입력 필드 사이의 간격 조정 (필요에 따라 수정) */
+}
+
+.input-error {
+	border: 1px solid red; /* 빨간색 테두리 추가 */
+}
+
+.input-valid {
+	border: 1px solid green; /* 초록색 테두리 추가 */
+	color: green;
+}
+
