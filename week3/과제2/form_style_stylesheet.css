@@ -373,16 +373,14 @@ hr{
 	background-color: #5a6268;
 }
 
-/* #divine 스타일은 필요하지 않아 보이므로 제거했습니다 */
-
 #divine{
 	margin-bottom: 17px;
 }
 
 .error-message {
 	color: red; /* 에러 메시지의 폰트 색상을 빨간색으로 설정 */
-	font-size: 14px; /* 폰트 크기 조정 (필요에 따라 수정) */
-	margin-top: 5px; /* 에러 메시지와 입력 필드 사이의 간격 조정 (필요에 따라 수정) */
+	font-size: 14px;
+	margin-top: 5px;
 }
 
 .input-error {
