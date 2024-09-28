@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="my.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>버거 추가</title>
+</head>
+<body>
+<div id="addBurgerModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="addForm" onsubmit="return validateForm()">
+                <div class="modal-header">
+                    <h4 class="modal-title">버거 정보 수정</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>메뉴명</label>
+                        <input type="text" id="menuName" class="form-control" required value="와퍼">
+                    </div>
+                    <div class="form-group">
+                        <label>카테고리</label>
+                        <input type="text" id="category" class="form-control" required value="버거">
+                    </div>
+                    <div class="form-group">
+                        <label>가격</label>
+                        <input type="number" id="price" class="form-control" required value="6900">
+                    </div>
+                    <div class="form-group">
+                        <label>상태</label>
+                        <select id="availability" class="form-control" required>
+                            <option value="">선택하세요</option>
+                            <option value="available" selected>판매 중</option>
+                            <option value="unavailable">불가능</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>칼로리</label>
+                        <input type="number" id="calories" class="form-control" required value="800">
+                    </div>
+                    <div class="form-group">
+                        <label>메뉴 설명</label>
+                        <textarea id="description" class="form-control" required>버거킹의 대표 메뉴</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>출시일</label>
+                        <input type="date" id="releaseDate" class="form-control" required value="2020-01-15">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" value="취소" onclick="location.href='index.html';">
+                    <input type="submit" class="btn btn-success" value="확인">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+	function validateForm() {
+		const fields = [
+			{ id: 'menuName', name: '메뉴명' },
+			{ id: 'category', name: '카테고리' },
+			{ id: 'price', name: '가격' },
+			{ id: 'availability', name: '상태' },
+			{ id: 'calories', name: '칼로리' },
+			{ id: 'description', name: '메뉴 설명' },
+			{ id: 'releaseDate', name: '출시일' }
+		];
+
+		let isValid = true;
+
+		fields.forEach(field => {
+			const input = document.getElementById(field.id);
+			if (!input.value) {
+				input.classList.add('error'); // 오류 필드 추가
+				input.classList.remove('success'); // 성공 필드 제거
+				isValid = false;
+			} else {
+				input.classList.add('success'); // 성공 필드 추가
+				input.classList.remove('error'); // 오류 필드 제거
+			}
+		});
+
+		if (isValid) {
+			if (confirm("게시물을 수정할까요?")) {
+				alert('게시물이 수정되었습니다.'); // 확인 후 메시지
+			}
+		} else {
+			alert('모든 필드를 입력해 주세요.');
+		}
+
+		return isValid; // 제출이 허용됨
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="my.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>버거 정보</title>
+</head>
+<body>
+<div id="burgerInfoModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">버거 정보</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group border-bottom">
+                    <label>메뉴명</label>
+                    <p id="menuName">와퍼</p>
+                </div>
+                <div class="form-group border-bottom">
+                    <label>카테고리</label>
+                    <p id="category">버거</p>
+                </div>
+                <div class="form-group border-bottom">
+                    <label>가격</label>
+                    <p id="price">₩6,900</p>
+                </div>
+                <div class="form-group border-bottom">
+                    <label>상태</label>
+                    <p id="availability">판매 중</p>
+                </div>
+                <div class="form-group border-bottom">
+                    <label>칼로리</label>
+                    <p id="calories">800 kcal</p>
+                </div>
+                <div class="form-group border-bottom">
+                    <label>메뉴 설명</label>
+                    <p id="description">버거킹의 대표 메뉴</p>
+                </div>
+                <div class="form-group">
+                    <label>출시일</label>
+                    <p id="releaseDate">2020-01-15</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-success" value="수정" onclick="location.href='edit.html';">
+                <input type="button" class="btn btn-danger" value="삭제" onclick="confirmDelete();">
+                <input type="button" class="btn btn-default" value="목록" onclick="location.href='index.html';">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+	$(document).ready(function() {
+		$('#burgerInfoModal').modal('show'); // 페이지 로드 시 모달 표시
+	});
+
+	function confirmDelete() {
+		if (confirm("게시물을 삭제할까요?")) {
+			// 삭제 로직을 여기에 추가하세요
+			alert("게시물이 삭제되었습니다."); // 삭제 완료 메시지
+		}
+	}
+</script>
+</body>
+</html>
