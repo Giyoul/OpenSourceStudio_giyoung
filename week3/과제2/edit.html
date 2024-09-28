@@ -91,13 +91,16 @@
 		if (isValid) {
 			if (confirm("게시물을 수정할까요?")) {
 				alert('게시물이 수정되었습니다.'); // 확인 후 메시지
+				// 페이지 리다이렉트
+				location.href = 'index.html';
 			}
 		} else {
 			alert('모든 필드를 입력해 주세요.');
 		}
 
-		return isValid; // 제출이 허용됨
+		return false; // 폼 제출 방지
 	}
+
 </script>
 </body>
 </html>
