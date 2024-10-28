@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+<body>
+<!--<div id = "div_moving">-->
+<!--  move?-->
+<!--</div>-->
+<!--<div id = "div_hiding">-->
+<!--  hide?-->
+<!--</div>-->
+<button onclick="getDataFromJSONFile()">get DATA</button>
+name : <input type="text" id="student_name">
+age : <input type="number" id="student_age">
+<button onclick="createDataToJSONFile()">post DATA</button>
+ID : <input type="text" id="student_id">
+<button onclick="updateDataToJSONFile()">put DATA</button>
+
+<div id = "div_students">
+</div>
+
+<script>
+    function getDataFromJSONFile(){
+		// let contents = document.getElementById("contents");
+		const xhr = new XMLHttpRequest();
+		xhr.open("GET", "http://localhost:3000/students");
+		xhr.setRequestHeader("content-type", "application/json");
+		xhr.send();
+		xhr.onload = () => {
+			alert(JSON.stringify(xhr))
+			if (xhr.status === 200) {
+				alert(JSON.stringify(xhr.response))
+                let students = JSON.parse(xhr.response);
+				alert(students.length);
+
+				students.forEach((item) => {
+					$("#div_students").append("<div>" + item.id + " " + item.name + "</div>")
+                });
+			} else {
+				console.log(xhr.status, xhr.statusText);
+			}
+		}
+    }
+
+	function createDataToJSONFile(){
+		// let contents = document.getElementById("contents");
+		const xhr = new XMLHttpRequest();
+		xhr.open("POST", "http://localhost:3000/students");
+		xhr.setRequestHeader("content-type", "application/json");
+
+		let data = {name:$("#student_name").val(), age:$("#student_age").val()};
+		xhr.send(JSON.stringify(data));
+		xhr.onload = () => {
+			if (xhr.status === 201) {
+				alert("등록 성공!");
+			}
+		}
+	}
+
+	function updateDataToJSONFile(){
+		// let contents = document.getElementById("contents");
+        let id = $("#student_id").val();
+		const xhr = new XMLHttpRequest();
+		xhr.open("PUT", "http://localhost:3000/students/" + id);
+		xhr.setRequestHeader("content-type", "application/json");
+
+		let data = {name:$("#student_name").val(), age:$("#student_age").val()};
+		xhr.send(JSON.stringify(data));
+		xhr.onload = () => {
+			alert(xhr.status);
+			if (xhr.status === 201) {
+				alert("수정 성공!");
+			}
+		}
+	}
+
+  $(document).ready(function () {
+    console.log("ready!");
+    $("#div_hiding").click(function () {
+      $(this).hide();
+    });
+      // $("#p2").click(function () {
+      //     $(this).css("color"
+      //         ,
+      //         "red");
+      // });
+      // $("#p3").click(function () {
+      //     $("#p2").animate({ left: "250px" });
+      // });
+  });
+</script>
+</body>
+</html>
