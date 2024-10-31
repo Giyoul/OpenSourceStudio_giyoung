@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Burger Management</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <style>
+		/* 기본 스타일 */
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f7f7f7;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			margin: 0;
+		}
+
+		#container {
+			background-color: #ffffff;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+			width: 90%;
+			max-width: 400px;
+			text-align: center;
+			margin: 20px;
+		}
+
+		h1 {
+			font-size: 24px;
+			color: #333333;
+			margin-bottom: 20px;
+		}
+
+		input[type="text"],
+		input[type="number"] {
+			width: 100%;
+			padding: 10px;
+			margin: 8px 0;
+			box-sizing: border-box;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+		}
+
+		button {
+			width: 100%;
+			padding: 10px;
+			margin-top: 8px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		button:hover {
+			opacity: 0.9;
+		}
+
+		button:nth-child(1) {
+			background-color: #4CAF50;
+			color: white;
+		}
+
+		button:nth-child(2) {
+			background-color: #2196F3;
+			color: white;
+		}
+
+		button:nth-child(3) {
+			background-color: #FFC107;
+			color: white;
+		}
+
+		button:nth-child(4) {
+			background-color: #f44336;
+			color: white;
+		}
+
+		#div_burgers {
+			margin-top: 20px;
+			text-align: left;
+			max-height: 400px;
+			overflow-y: auto;
+			border-top: 1px solid #ddd;
+			padding-top: 10px;
+		}
+
+		.burger-item {
+			padding: 8px;
+			background-color: #f9f9f9;
+			border-bottom: 1px solid #ddd;
+			border-radius: 4px;
+			margin-bottom: 8px;
+			display: flex;
+			justify-content: space-between;
+			font-size: 14px;
+		}
+
+		/* 데스크톱 스타일 */
+		@media (min-width: 768px) {
+			#container {
+				width: 60%;
+				max-width: 500px;
+			}
+
+			h1 {
+				font-size: 26px;
+			}
+
+			input[type="text"],
+			input[type="number"],
+			button {
+				font-size: 18px;
+			}
+
+			.burger-item {
+				font-size: 16px;
+			}
+		}
+
+		/* 대형 화면 스타일 */
+		@media (min-width: 1024px) {
+			#container {
+				width: 80%;
+				max-width: 1280px;
+			}
+		}
+    </style>
+</head>
+<body>
+<div id="container">
+    <h1>Burger Management</h1>
+    <button onclick="getDataFromJSONFile()">Get Data</button>
+    <input type="text" id="burger_name" placeholder="Name">
+    <input type="number" id="burger_price" placeholder="Price">
+    <input type="number" id="burger_kcal" placeholder="Kcal">
+    <input type="number" id="burger_hot" placeholder="Hot">
+    <button onclick="createDataToJSONFile()">Add Burger</button>
+    <input type="text" id="burger_id" placeholder="ID">
+    <button onclick="updateDataToJSONFile()">Update Burger</button>
+    <button onclick="deleteDataFromJSONFile()">Delete Burger</button>
+
+    <div id="div_burgers">
+    </div>
+</div>
+
+<script>
+	function getDataFromJSONFile() {
+		const xhr = new XMLHttpRequest();
+		xhr.open("GET", "http://localhost:3000/burgers");
+		xhr.setRequestHeader("content-type", "application/json");
+		xhr.send();
+		xhr.onload = () => {
+			if (xhr.status === 200) {
+				let burgers = JSON.parse(xhr.response);
+				$("#div_burgers").empty();
+				burgers.forEach((item) => {
+					$("#div_burgers").append("<div class='burger-item'><span>" + "ID : " + item.id + " >> " + item.name + "</span><span>" + item.price + "원, " + item.kcal + "kcal, " + item.hot + "단계 맵기</span></div>");
+				});
+			} else {
+				console.log(xhr.status, xhr.statusText);
+			}
+		}
+	}
+
+	function createDataToJSONFile() {
+		const xhr = new XMLHttpRequest();
+		xhr.open("POST", "http://localhost:3000/burgers");
+		xhr.setRequestHeader("content-type", "application/json");
+
+		let data = {name: $("#burger_name").val(), kcal: $("#burger_kcal").val(), price: $("#burger_price").val(), hot: $("#burger_hot").val()};
+		xhr.send(JSON.stringify(data));
+		xhr.onload = () => {
+			if (xhr.status === 201) {
+				alert("등록 성공!");
+				getDataFromJSONFile();
+			}
+		}
+	}
+
+	function updateDataToJSONFile() {
+		let id = $("#burger_id").val();
+		const xhr = new XMLHttpRequest();
+		xhr.open("PUT", "http://localhost:3000/burgers/" + id);
+		xhr.setRequestHeader("content-type", "application/json");
+
+		let data = {name: $("#burger_name").val(), kcal: $("#burger_kcal").val(), price: $("#burger_price").val(), hot: $("#burger_hot").val()};
+		xhr.send(JSON.stringify(data));
+		xhr.onload = () => {
+			if (xhr.status === 200) {
+				alert("수정 성공!");
+				getDataFromJSONFile();
+			}
+		}
+	}
+
+	function deleteDataFromJSONFile() {
+		let id = $("#burger_id").val();
+		const xhr = new XMLHttpRequest();
+		xhr.open("DELETE", "http://localhost:3000/burgers/" + id);
+		xhr.setRequestHeader("content-type", "application/json");
+		xhr.send();
+		xhr.onload = () => {
+			if (xhr.status === 200) {
+				alert("삭제 성공!");
+				getDataFromJSONFile();
+			} else {
+				alert("삭제 실패: " + xhr.status);
+			}
+		}
+	}
+
+	$(document).ready(function () {
+		console.log("ready!");
+		getDataFromJSONFile();
+	});
+</script>
+</body>
+</html>
