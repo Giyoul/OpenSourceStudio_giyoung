@@ -148,7 +148,7 @@
 <script>
 	function getDataFromJSONFile() {
 		const xhr = new XMLHttpRequest();
-		xhr.open("GET", "http://localhost:3000/burgers");
+		xhr.open("GET", "https://github.com/Giyoul/OpenSourceStudio_giyoung/blob/main/week3/%EA%B3%BC%EC%A0%9C2/my_data.json");
 		xhr.setRequestHeader("content-type", "application/json");
 		xhr.send();
 		xhr.onload = () => {
@@ -166,7 +166,7 @@
 
 	function createDataToJSONFile() {
 		const xhr = new XMLHttpRequest();
-		xhr.open("POST", "http://localhost:3000/burgers");
+		xhr.open("POST", "https://github.com/Giyoul/OpenSourceStudio_giyoung/blob/main/week3/%EA%B3%BC%EC%A0%9C2/my_data.json");
 		xhr.setRequestHeader("content-type", "application/json");
 
 		let data = {name: $("#burger_name").val(), kcal: $("#burger_kcal").val(), price: $("#burger_price").val(), hot: $("#burger_hot").val()};
@@ -182,7 +182,7 @@
 	function updateDataToJSONFile() {
 		let id = $("#burger_id").val();
 		const xhr = new XMLHttpRequest();
-		xhr.open("PUT", "http://localhost:3000/burgers/" + id);
+		xhr.open("PUT", "https://github.com/Giyoul/OpenSourceStudio_giyoung/blob/main/week3/%EA%B3%BC%EC%A0%9C2/my_data.json" + id);
 		xhr.setRequestHeader("content-type", "application/json");
 
 		let data = {name: $("#burger_name").val(), kcal: $("#burger_kcal").val(), price: $("#burger_price").val(), hot: $("#burger_hot").val()};
@@ -198,7 +198,7 @@
 	function deleteDataFromJSONFile() {
 		let id = $("#burger_id").val();
 		const xhr = new XMLHttpRequest();
-		xhr.open("DELETE", "http://localhost:3000/burgers/" + id);
+		xhr.open("DELETE", "https://github.com/Giyoul/OpenSourceStudio_giyoung/blob/main/week3/%EA%B3%BC%EC%A0%9C2/my_data.json" + id);
 		xhr.setRequestHeader("content-type", "application/json");
 		xhr.send();
 		xhr.onload = () => {
