@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Burger Management</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <style>
+		/* 기본 스타일 */
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f7f7f7;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			margin: 0;
+		}
+
+		#container {
+			background-color: #ffffff;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+			width: 90%;
+			max-width: 400px;
+			text-align: center;
+			margin: 20px;
+		}
+
+		h1 {
+			font-size: 24px;
+			color: #333333;
+			margin-bottom: 20px;
+		}
+
+		button {
+			width: 100%;
+			padding: 10px;
+			margin-top: 8px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		#div_burgers {
+			margin-top: 20px;
+			text-align: left;
+			max-height: 400px;
+			overflow-y: auto;
+			border-top: 1px solid #ddd;
+			padding-top: 10px;
+		}
+
+		.burger-item {
+			padding: 8px;
+			background-color: #f9f9f9;
+			border-bottom: 1px solid #ddd;
+			border-radius: 4px;
+			margin-bottom: 8px;
+			display: flex;
+			justify-content: space-between;
+			font-size: 14px;
+		}
+
+		.burger-item .actions button {
+			margin: 2px;
+			font-size: 12px;
+			padding: 4px;
+		}
+
+		/* 반응형 디자인 */
+		@media (min-width: 768px) {
+			#container {
+				width: 60%;
+				max-width: 600px;
+			}
+			h1 {
+				font-size: 26px;
+			}
+			button {
+				font-size: 18px;
+			}
+			.burger-item {
+				font-size: 16px;
+			}
+		}
+
+		@media (min-width: 1024px) {
+			#container {
+				width: 80%;
+				max-width: 1280px;
+			}
+		}
+
+		/* Modal 기본 스타일 */
+		.modal {
+			display: none;
+			position: fixed;
+			z-index: 1;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto;
+			background-color: rgba(0, 0, 0, 0.4);
+		}
+
+		.modal-content {
+			background-color: #fefefe;
+			margin: 10% auto;
+			padding: 20px;
+			border: 1px solid #888;
+			width: 80%;
+			max-width: 400px;
+			border-radius: 8px;
+		}
+
+		.close {
+			color: #aaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+			cursor: pointer;
+		}
+
+		.close:hover,
+		.close:focus {
+			color: black;
+		}
+    </style>
+</head>
+<body>
+<div id="container">
+    <h1>Burger Management</h1>
+    <button onclick="openModal('addModal')">Add Burger</button>
+
+    <div id="div_burgers"></div>
+</div>
+
+<!-- Add Burger Modal -->
+<div id="addModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('addModal')">&times;</span>
+        <h2>Add Burger</h2>
+        <input type="text" id="add_burger_name" placeholder="Name">
+        <input type="number" id="add_burger_price" placeholder="Price">
+        <input type="number" id="add_burger_kcal" placeholder="Kcal">
+        <input type="number" id="add_burger_hot" placeholder="Hot">
+        <button onclick="createDataToJSONFile()">Add Burger</button>
+    </div>
+</div>
+
+<!-- Edit Burger Modal -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('editModal')">&times;</span>
+        <h2>Edit Burger</h2>
+        <input type="hidden" id="edit_burger_id">
+        <input type="text" id="edit_burger_name" placeholder="Name">
+        <input type="number" id="edit_burger_price" placeholder="Price">
+        <input type="number" id="edit_burger_kcal" placeholder="Kcal">
+        <input type="number" id="edit_burger_hot" placeholder="Hot">
+        <button onclick="updateDataToJSONFile()">Update Burger</button>
+    </div>
+</div>
+
+<script>
+	function openModal(modalId) {
+		document.getElementById(modalId).style.display = "block";
+	}
+
+	function closeModal(modalId) {
+		document.getElementById(modalId).style.display = "none";
+	}
+
+	window.onclick = function(event) {
+		if (event.target.classList.contains('modal')) {
+			event.target.style.display = "none";
+		}
+	}
+
+	function getDataFromJSONFile() {
+		const xhr = new XMLHttpRequest();
+		xhr.open("GET", "https://672818cb270bd0b9755451a8.mockapi.io/api/v1/burgers");
+		xhr.setRequestHeader("content-type", "application/json");
+		xhr.send();
+		xhr.onload = () => {
+			if (xhr.status === 200) {
+				let burgers = JSON.parse(xhr.response);
+				$("#div_burgers").empty();
+				burgers.forEach((item) => {
+					$("#div_burgers").append(
+						`<div class='burger-item'>
+                            <span>ID: ${item.id} >> ${item.name} - ${item.price}원, ${item.kcal}kcal, ${item.hot}단계</span>
+                            <div class="actions">
+                                <button onclick='loadEditModal(${JSON.stringify(item)})'>Edit</button>
+                                <button onclick='deleteDataFromJSONFile(${item.id})'>Delete</button>
+                            </div>
+                        </div>`
+					);
+				});
+			}
+		}
+	}
+
+	function createDataToJSONFile() {
+		const xhr = new XMLHttpRequest();
+		xhr.open("POST", "https://672818cb270bd0b9755451a8.mockapi.io/api/v1/burgers");
+		xhr.setRequestHeader("content-type", "application/json");
+
+		let data = {
+			name: $("#add_burger_name").val(),
+			kcal: $("#add_burger_kcal").val(),
+			price: $("#add_burger_price").val(),
+			hot: $("#add_burger_hot").val()
+		};
+		xhr.send(JSON.stringify(data));
+		xhr.onload = () => {
+			if (xhr.status === 201) {
+				alert("등록 성공!");
+				closeModal('addModal');
+				getDataFromJSONFile();
+			}
+		}
+	}
+
+	function loadEditModal(item) {
+		$("#edit_burger_id").val(item.id);
+		$("#edit_burger_name").val(item.name);
+		$("#edit_burger_price").val(item.price);
+		$("#edit_burger_kcal").val(item.kcal);
+		$("#edit_burger_hot").val(item.hot);
+		openModal('editModal');
+	}
+
+	function updateDataToJSONFile() {
+		let id = $("#edit_burger_id").val();
+		const xhr = new XMLHttpRequest();
+		xhr.open("PUT", "https://672818cb270bd0b9755451a8.mockapi.io/api/v1/burgers/" + id);
+		xhr.setRequestHeader("content-type", "application/json");
+
+		let data = {
+			name: $("#edit_burger_name").val(),
+			kcal: $("#edit_burger_kcal").val(),
+			price: $("#edit_burger_price").val(),
+			hot: $("#edit_burger_hot").val()
+		};
+		xhr.send(JSON.stringify(data));
+		xhr.onload = () => {
+			if (xhr.status === 200) {
+				alert("수정 성공!");
+				closeModal('editModal');
+				getDataFromJSONFile();
+			}
+		}
+	}
+
+	function deleteDataFromJSONFile(id) {
+		const xhr = new XMLHttpRequest();
+		xhr.open("DELETE", "https://672818cb270bd0b9755451a8.mockapi.io/api/v1/burgers/" + id);
+		xhr.setRequestHeader("content-type", "application/json");
+		xhr.send();
+		xhr.onload = () => {
+			if (xhr.status === 200) {
+				alert("삭제 성공!");
+				getDataFromJSONFile();
+			}
+		}
+	}
+
+	$(document).ready(function() {
+		getDataFromJSONFile();
+	});
+</script>
+</body>
+</html>
