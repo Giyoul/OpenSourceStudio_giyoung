@@ -13,11 +13,6 @@ function ShowList() {
 		id: null
 	});
 
-	// 데이터 로드 (컴포넌트가 마운트될 때)
-	useEffect(() => {
-		fetchData();
-	}, []);
-
 	// 데이터를 가져오는 함수
 	const fetchData = useCallback(() => {
 		console.log("Fetching data...");
@@ -29,6 +24,11 @@ function ShowList() {
 			})
 			.catch((error) => console.error("Error fetching data:", error));
 	}, []);
+
+	// 데이터 로드 (컴포넌트가 마운트될 때)
+	useEffect(() => {
+		fetchData();
+	}, [fetchData]); // 여기서 fetchData가 useCallback으로 초기화된 후 호출됩니다.
 
 	// 새로운 데이터를 추가하는 함수
 	const createDataToJSONFile = useCallback(() => {
@@ -108,8 +108,7 @@ function ShowList() {
 		}
 	};
 
-
-// 모달을 닫는 함수
+	// 모달을 닫는 함수
 	const closeModal = (modalId) => {
 		console.log(`Closing modal: ${modalId}`); // 모달 닫기 로그
 		if (modalId === "addModal") {
@@ -143,9 +142,9 @@ function ShowList() {
 			<div id="div_burgers">
 				{burgers.map((burger) => (
 					<div className="burger-item" key={burger.id}>
-            <span>
-              ID: {burger.id} >> {burger.name} - {burger.price}원, {burger.kcal}kcal, {burger.hot}단계
-            </span>
+						<span>
+							ID: {burger.id} >> {burger.name} - {burger.price}원, {burger.kcal}kcal, {burger.hot}단계
+						</span>
 						<div className="actions">
 							<button onClick={() => loadEditModal(burger)}>Edit</button>
 							<button onClick={() => deleteDataFromJSONFile(burger.id)}>Delete</button>
@@ -158,9 +157,7 @@ function ShowList() {
 			{isAddModalOpen && (
 				<div className={`modal ${isAddModalOpen ? 'show' : ''}`} id="addModal">
 					<div className="modal-content">
-      <span className="close" onClick={() => closeModal("addModal")}>
-        &times;
-      </span>
+						<span className="close" onClick={() => closeModal("addModal")}>&times;</span>
 						<h2>Add Burger</h2>
 						<input
 							type="text"
@@ -202,9 +199,7 @@ function ShowList() {
 			{isEditModalOpen && (
 				<div className={`modal ${isEditModalOpen ? 'show' : ''}`} id="editModal">
 					<div className="modal-content">
-      <span className="close" onClick={() => closeModal("editModal")}>
-        &times;
-      </span>
+						<span className="close" onClick={() => closeModal("editModal")}>&times;</span>
 						<h2>Edit Burger</h2>
 						<input
 							type="text"

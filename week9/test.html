@@ -13,31 +13,31 @@
 <!--  hide?-->
 <!--</div>-->
 <button onclick="getDataFromJSONFile()">get DATA</button>
-name : <input type="text" id="student_name">
-age : <input type="number" id="student_age">
+name : <input type="text" id="burger_name">
+age : <input type="number" id="burger_age">
 <button onclick="createDataToJSONFile()">post DATA</button>
-ID : <input type="text" id="student_id">
+ID : <input type="text" id="burger_id">
 <button onclick="updateDataToJSONFile()">put DATA</button>
 
-<div id = "div_students">
+<div id = "div_burgers">
 </div>
 
 <script>
     function getDataFromJSONFile(){
 		// let contents = document.getElementById("contents");
 		const xhr = new XMLHttpRequest();
-		xhr.open("GET", "http://localhost:3000/students");
+		xhr.open("GET", "http://localhost:3000/burgers");
 		xhr.setRequestHeader("content-type", "application/json");
 		xhr.send();
 		xhr.onload = () => {
 			alert(JSON.stringify(xhr))
 			if (xhr.status === 200) {
 				alert(JSON.stringify(xhr.response))
-                let students = JSON.parse(xhr.response);
-				alert(students.length);
+                let burgers = JSON.parse(xhr.response);
+				alert(burgers.length);
 
-				students.forEach((item) => {
-					$("#div_students").append("<div>" + item.id + " " + item.name + "</div>")
+				burgers.forEach((item) => {
+					$("#div_burgers").append("<div>" + item.id + " " + item.name + "</div>")
                 });
 			} else {
 				console.log(xhr.status, xhr.statusText);
@@ -48,10 +48,10 @@ ID : <input type="text" id="student_id">
 	function createDataToJSONFile(){
 		// let contents = document.getElementById("contents");
 		const xhr = new XMLHttpRequest();
-		xhr.open("POST", "http://localhost:3000/students");
+		xhr.open("POST", "http://localhost:3000/burgers");
 		xhr.setRequestHeader("content-type", "application/json");
 
-		let data = {name:$("#student_name").val(), age:$("#student_age").val()};
+		let data = {name:$("#burger_name").val(), age:$("#burger_age").val()};
 		xhr.send(JSON.stringify(data));
 		xhr.onload = () => {
 			if (xhr.status === 201) {
@@ -62,12 +62,12 @@ ID : <input type="text" id="student_id">
 
 	function updateDataToJSONFile(){
 		// let contents = document.getElementById("contents");
-        let id = $("#student_id").val();
+        let id = $("#burger_id").val();
 		const xhr = new XMLHttpRequest();
-		xhr.open("PUT", "http://localhost:3000/students/" + id);
+		xhr.open("PUT", "http://localhost:3000/burgers/" + id);
 		xhr.setRequestHeader("content-type", "application/json");
 
-		let data = {name:$("#student_name").val(), age:$("#student_age").val()};
+		let data = {name:$("#burger_name").val(), age:$("#burger_age").val()};
 		xhr.send(JSON.stringify(data));
 		xhr.onload = () => {
 			alert(xhr.status);
