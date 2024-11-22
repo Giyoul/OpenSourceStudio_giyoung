@@ -1,0 +1,14 @@
+/* Detail 페이지 스타일 */
+.detail-container {
+	text-align: center;
+}
+
+.detail-container p {
+	margin: 10px 0;
+	font-size: 18px;
+	color: #555;
+}
+
+.detail-container button {
+	margin-top: 20px;
+}

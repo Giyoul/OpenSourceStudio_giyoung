@@ -1,0 +1,9 @@
+/* Update 페이지 스타일 */
+.update-container input {
+	display: block;
+	margin: 10px auto;
+}
+
+.update-container button {
+	margin: 10px 5px;
+}
