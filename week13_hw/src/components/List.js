@@ -21,7 +21,6 @@ function List() {
 			axios
 				.delete(`https://672818cb270bd0b9755451a8.mockapi.io/api/v1/burgers/${id}`)
 				.then(() => {
-					// 성공적으로 삭제한 후, 로컬 상태에서 제거
 					setBurgers((prevBurgers) => prevBurgers.filter((burger) => burger.id !== id));
 					alert("삭제되었습니다.");
 				})
@@ -35,27 +34,29 @@ function List() {
 	return (
 		<div className="container list-container">
 			<h1>버거킹 메뉴 정보</h1>
-			<button className="add-button" onClick={() => navigate("/update")}>
-				Add New Burger
-			</button>
+			<div className="button-group">
+				<button className="add-button" onClick={() => navigate("/add")}>
+					Add New Burger
+				</button>
+				<button
+					className="edit-button"
+					onClick={() => navigate("/update", { state: { burgers } })}
+				>
+					Edit All
+				</button>
+			</div>
 			<ul>
 				{burgers.map((burger) => (
 					<li key={burger.id}>
-            <span>
-              {burger.name} - {burger.price}원
-            </span>
+						<span>
+							{burger.name} - {burger.price}원
+						</span>
 						<div>
 							<button
 								className="secondary"
 								onClick={() => navigate("/detail", { state: { burger } })}
 							>
 								View Details
-							</button>
-							<button
-								className="edit-button"
-								onClick={() => navigate("/update", { state: { burger } })}
-							>
-								Edit
 							</button>
 							<button
 								className="delete-button"
